@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            background-color: #fefefe; 
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff; 
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 450px;
+        }
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #ffca28; 
+        }
+        .container label {
+            color: #333; 
+        }
+        .container input[type="text"], 
+        .container input[type="email"], 
+        .container input[type="password"],
+        .container input[type="tel"],
+        .container input[type="date"] {
+            width: 90%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ffeb3b; 
+            border-radius: 5px;
+            background-color: #fffde7; 
+        }
+        .container select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ffeb3b; 
+            border-radius: 5px;
+            background-color: #fffde7; 
+        }
+        .container input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .container input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            background-color: #ffca28; 
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .container input[type="submit"]:hover {
+            background-color: #f57f17; 
+        }
+        .terms {
+            font-size: 14px;
+            margin: 10px 0;
+            color: #555;
+        }
+        .terms a {
+            color: #f57f17; 
+            text-decoration: none;
+        }
+        .terms a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Event Registration Form</h2>
+        <form action="/submit_registration" method="post">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" placeholder="Enter your name" required>
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your email" required>
+
+            <label for="phone">Phone Number:</label>
+            <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" placeholder="1234567890" required>
+
+            <label for="dob">Date of Birth:</label>
+            <input type="date" id="dob" name="dob" required>
+
+            <label for="branch">Select Branch:</label>
+            <select id="branch" name="branch" required>
+                <option value="">--Select Branch--</option>
+                <option value="CSE">CSE</option>
+                <option value="CSM">CSM</option>
+                <option value="IT">IT</option>
+                <option value="EEE">EEE</option>
+            </select>
+
+            <label for="event">Select Event:</label>
+            <select id="event" name="event" required>
+                <option value="">Select an Event</option>
+                <option value="Coding_Competition">Coding Competition</option>
+                <option value="Hackathon">Hackathon</option>
+                <option value="Gamathon">Gamathon</option>
+                <option value="Workshop">Workshop</option>
+                <option value="Webinar">Webinar</option>
+                <option value="Tech_Meetup">Tech Meetup</option>
+            </select>
+
+            <div class="terms">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the <a href="#">Terms and Conditions</a></label>
+            </div>
+
+            <input type="submit" value="Register">
+        </form>
+
+        <script>
+            document.getElementById('registrationForm').addEventListener('submit', function(event) {
+                event.preventDefault();
+    
+                // Get the selected event value
+                const selectedEvent = document.getElementById('event').value;
+    
+                // Redirect based on the selected event
+                let redirectUrl = '';
+                switch (selectedEvent) {
+                    case 'Coding_Competition':
+                        redirectUrl = 'coding_competition.html';
+                        break;
+                    case 'Hackathon':
+                        redirectUrl = 'hackathon.html';
+                        break;
+                    case 'Gamathon':
+                        redirectUrl = 'Gamathon.html';
+                        break;
+                    case 'Workshop':
+                        redirectUrl = 'Workshop.html';
+                        break;
+                    case 'Webinar':
+                        redirectUrl = 'Webinar.html';
+                        break;
+                    case 'Tech_Meetup':
+                        redirectUrl = 'Tech_meetup.html';
+                        break;
+                    default:
+                        alert('Please select a valid event.');
+                        return;
+                }
+    
+                // Simulate form submission and redirect
+                alert('Form submitted successfully! Redirecting to the event page...');
+                window.location.href = redirectUrl;
+            });
+        </script>
+    </div>
+</body>
+</html>
